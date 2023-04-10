@@ -1,0 +1,68 @@
+From 9669b1ff360b04dc8a6fe1e283281ce77df38fae Mon Sep 17 00:00:00 2001
+From: Yi Zhao <yi.zhao@windriver.com>
+Date: Tue, 11 Jul 2023 16:53:46 +0800
+Subject: [PATCH] Do not build external gtest
+
+We don't need to build external gtest since we already depend on
+googletest.
+
+Upstream-Status: Inappropriate [embedded specific]
+
+Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
+---
+ CMakeLists.txt | 30 +++---------------------------
+ 1 file changed, 3 insertions(+), 27 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 4f8b66b8..745cc455 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -18,14 +18,6 @@ set (VSOMEIP_VERSION ${VSOMEIP_MAJOR_VERSION}.${VSOMEIP_MINOR_VERSION}.${VSOMEIP
+ set (PACKAGE_VERSION ${VSOMEIP_VERSION}) # Used in documentation/doxygen.in
+ set (CMAKE_VERBOSE_MAKEFILE off)
+ 
+-if (NOT GTEST_ROOT)
+-    if (DEFINED ENV{GTEST_ROOT})
+-        set(GTEST_ROOT $ENV{GTEST_ROOT})
+-    else()
+-        set(GTEST_ROOT "n/a" CACHE STRING "Path to root folder of googletest. Must be set for building the tests.")
+-    endif()
+-endif()
+-
+ ###################################################################################################
+ # see http://www.cmake.org/Wiki/CMake/Tutorials/How_to_create_a_ProjectConfig.cmake_file
+ ###################################################################################################
+@@ -608,27 +600,11 @@ endif()
+ ##############################################################################
+ # google test
+ 
+-# check for set environment variable
+-if(${GTEST_ROOT} STREQUAL "n/a")
+-    message(STATUS "GTEST_ROOT is not defined. For building the tests the variable
+-             GTEST_ROOT has to be defined. Tests can not be built.")
+-    # early exit
+-    return()  # test can not be build -> make commands build_tests and check are not available
+-else()
+-    message(STATUS "GTEST_ROOT is set. gtest root path set to ${GTEST_ROOT}")
++find_package(GTest)
++if (NOT GTest_FOUND)
++    message(WARNING "GTest is not found. Tests can not be built.")
+ endif()
+ 
+-# build google test as static library (always) -> therefore deactivate BUILD_SHARED_LIBS in case it is active
+-set(BUILD_SHARED_LIBS_AUTOMATIC_OFF 0)
+-if ("${BUILD_SHARED_LIBS}" STREQUAL "ON")
+-    set(BUILD_SHARED_LIBS OFF)
+-    set(BUILD_SHARED_LIBS_AUTOMATIC_OFF 1)
+-endif()
+-add_subdirectory(${GTEST_ROOT} ${CMAKE_CURRENT_BINARY_DIR}/gtest EXCLUDE_FROM_ALL)
+-if ("${BUILD_SHARED_LIBS_AUTOMATIC_OFF}" STREQUAL "1")
+-    set(BUILD_SHARED_LIBS ON)
+-    set(BUILD_SHARED_LIBS_AUTOMATIC_OFF 0)
+-endif()
+ 
+ 
+ 
+-- 
+2.25.1
+
