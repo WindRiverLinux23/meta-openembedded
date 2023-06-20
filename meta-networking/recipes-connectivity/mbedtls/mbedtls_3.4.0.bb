@@ -23,8 +23,8 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57"
 SECTION = "libs"
 
 S = "${WORKDIR}/git"
-SRCREV = "47e8cc9db2e469d902b0e3093ae9e482c3d87188"
-SRC_URI = "git://github.com/ARMmbed/mbedtls.git;protocol=https;branch=mbedtls-2.28 \
+SRCREV = "1873d3bfc2da771672bd8e7e8f41f57e0af77f33"
+SRC_URI = "git://github.com/ARMmbed/mbedtls.git;protocol=https;branch=master \
            file://run-ptest \
           "
 
