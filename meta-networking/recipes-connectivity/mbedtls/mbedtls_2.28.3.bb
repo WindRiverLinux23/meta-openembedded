@@ -41,6 +41,9 @@ PACKAGECONFIG[tests] = "-DENABLE_TESTING=ON,-DENABLE_TESTING=OFF"
 
 EXTRA_OECMAKE = "-DLIB_INSTALL_DIR:STRING=${libdir}"
 
+# Needs crypto instructions on aarch64
+TUNE_CCARGS_MARCH_OPTS:append:aarch64 = "${@bb.utils.contains('TUNE_FEATURES', 'crypto', '', '+crypto', d)}"
+
 # For now the only way to enable PSA is to explicitly pass a -D via CFLAGS
 CFLAGS:append = "${@bb.utils.contains('PACKAGECONFIG', 'psa', ' -DMBEDTLS_USE_PSA_CRYPTO', '', d)}"
 
