@@ -1,0 +1,42 @@
+From ea555f757323b13e95e2358262e5a90a18042d35 Mon Sep 17 00:00:00 2001
+From: Yi Zhao <yi.zhao@windriver.com>
+Date: Mon, 17 Jul 2023 14:33:32 +0800
+Subject: [PATCH] Do not specify PIE flag explicitly
+
+By default, wrlinux distro enables PIE by including security_flags.inc.
+For nodistro distro, packages are built without PIE because
+security_flags.inc is not included. But in vsomeip, the PIE flag is
+explicitly specified in CMAKE_CXX_FLAGS, which will cause building with
+PIE even in nodistro, causing an error when linking the googletest
+static library:
+
+TOPDIR/tmp-glibc/work/cortexa53-oe-linux/vsomeip/3.1.20.3-r0/recipe-sysroot-native/usr/bin/aarch64-oe-linux/../../libexec/aarch64-oe-linux/gcc/aarch64-oe-linux/12.2.0/ld:
+TOPDIR/tmp-glibc/work/cortexa53-oe-linux/vsomeip/3.1.20.3-r0/recipe-sysroot/usr/lib/libgtest.a(gtest-all.cc.o)(.text+0x4a90):
+unresolvable R_AARCH64_ADR_PREL_PG_HI21 relocation against symbol `_ZSt4cerr@@GLIBCXX_3.4'
+
+Remove PIE flag from CMAKE_CXX_FLAGS and only enable PIE flag by
+including security_flags.inc.
+
+Upstream-Status: Inappropriate [embedded specific]
+
+Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
+---
+ CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index db17f1d..9d6ffa6 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -52,7 +52,7 @@ if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+     set(EXPORTSYMBOLS "-Wl,-export-dynamic -Wl,--version-script=${CMAKE_CURRENT_SOURCE_DIR}/exportmap.gcc")
+     set(NO_DEPRECATED "")
+     set(OPTIMIZE "")
+-    set(OS_CXX_FLAGS "-D_GLIBCXX_USE_NANOSLEEP -pthread -O -Wall -Wextra -Wformat -Wformat-security -Wconversion -fexceptions -fstrict-aliasing -fstack-protector-strong -fasynchronous-unwind-tables -fno-omit-frame-pointer -D_FORTIFY_SOURCE=2 -Wformat -Wformat-security -Werror=format-security -fPIE -pie -Wl,-z,relro,-z,now")
++    set(OS_CXX_FLAGS "-D_GLIBCXX_USE_NANOSLEEP -pthread -O -Wall -Wextra -Wformat -Wformat-security -Wconversion -fexceptions -fstrict-aliasing -fstack-protector-strong -fasynchronous-unwind-tables -fno-omit-frame-pointer -D_FORTIFY_SOURCE=2 -Wformat -Wformat-security -Werror=format-security -Wl,-z,relro,-z,now")
+ endif (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+ 
+ if (${CMAKE_SYSTEM_NAME} MATCHES "Android")
+-- 
+2.25.1
+
