@@ -15,6 +15,7 @@ SRC_URI = "git://github.com/GENIVI/${BPN}.git;branch=master;protocol=https;name=
            file://0005-Add-boost-1.78-support-so-that-vsomeip3-will-compile.patch \
            file://0006-Support-boost-1.82.patch \
            file://0007-Do-general-cleanup-of-warnings-that-gcc-12.1.1-fired.patch \
+           file://0008-Do-not-specify-PIE-flag-explicitly.patch \
           "
 
 SRCREV = "13f9c89ced6ffaeb1faf485152e27e1f40d234cd"
