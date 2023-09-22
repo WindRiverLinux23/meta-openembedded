@@ -1,0 +1,42 @@
+From 24f2497d70894ecb8fd6e5ddac18ffcfb04e0d37 Mon Sep 17 00:00:00 2001
+From: Mingli Yu <mingli.yu@windriver.com>
+Date: Mon, 17 Apr 2023 07:46:30 +0000
+Subject: [PATCH] math_private.h: define __double_t
+
+Fix below build failure:
+  /build/tmp-glibc/work/x86-wrsmllib32-linux/lib32-mozjs-91/91.8.0-r0/firefox-91.8.0/modules/fdlibm/src/math_private.h:34:21: error: conflicting declaration 'typedef __double_t double_t'
+   34 | typedef __double_t  double_t;
+      |                     ^~~~~~~~
+In file included from /build/tmp-glibc/work/x86-wrsmllib32-linux/lib32-mozjs-91/91.8.0-r0/lib32-recipe-sysroot/usr/include/c++/11.3.0/cmath:45,
+                 from /build/tmp-glibc/work/x86-wrsmllib32-linux/lib32-mozjs-91/91.8.0-r0/build/dist/system_wrappers/cmath:3,
+                 from /build/tmp-glibc/work/x86-wrsmllib32-linux/lib32-mozjs-91/91.8.0-r0/firefox-91.8.0/modules/fdlibm/src/e_acos.cpp:41:
+/build/tmp-glibc/work/x86-wrsmllib32-linux/lib32-mozjs-91/91.8.0-r0/lib32-recipe-sysroot/usr/include/math.h:170:21: note: previous declaration as 'typedef long double double_t'
+  170 | typedef long double double_t;
+      |                     ^~~~~~~~
+
+Upstream-Status: Submitted [https://bugzilla.mozilla.org/show_bug.cgi?id=1729459]
+
+Signed-off-by: Mingli Yu <mingli.yu@windriver.com>
+---
+ modules/fdlibm/src/math_private.h | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/modules/fdlibm/src/math_private.h b/modules/fdlibm/src/math_private.h
+index 51d79f9..fafd7d6 100644
+--- a/modules/fdlibm/src/math_private.h
++++ b/modules/fdlibm/src/math_private.h
+@@ -30,7 +30,11 @@
+  * Adapted from https://github.com/freebsd/freebsd-src/search?q=__double_t
+  */
+ 
++#if defined __FLT_EVAL_METHOD__ && (__FLT_EVAL_METHOD__ == 2)
++typedef long double      __double_t;
++#else
+ typedef double      __double_t;
++#endif
+ typedef __double_t  double_t;
+ 
+ /*
+-- 
+2.23.0
+
