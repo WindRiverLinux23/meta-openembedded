@@ -10,7 +10,7 @@ S = "${WORKDIR}/git"
 B = "${S}"
 
 SRCREV = "12b8e6bff611eecb0343ee8a765151e7d9d3547b"
-SRC_URI = "git://github.com/rhinstaller/libbytesize;branch=master;protocol=https"
+SRC_URI = "git://github.com/storaged-project/libbytesize;branch=main;protocol=https"
 
 inherit gettext autotools pkgconfig python3native
 
