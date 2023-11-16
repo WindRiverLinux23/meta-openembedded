@@ -27,6 +27,8 @@ SRCREV = "72718dd87e087215ce9155a826ee5a66cfbe9631"
 SRC_URI = "git://github.com/ARMmbed/mbedtls.git;protocol=https;branch=master \
 	file://0001-aesce-do-not-specify-an-arch-version-when-enabling-c.patch \
 	file://0002-aesce-use-correct-target-attribute-when-building-wit.patch \
+	file://CVE-2023-43615.patch \
+	file://CVE-2023-45199.patch \
 	file://run-ptest"
 
 inherit cmake update-alternatives ptest
