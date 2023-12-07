@@ -17,6 +17,29 @@ SRC_URI = "git://github.com/OpenSC/OpenSC;branch=master;protocol=https \
            file://0001-pkcs11-tool-Fix-private-key-import.patch \
            file://0002-pkcs11-tool-Log-more-information-on-OpenSSL-errors.patch \
            file://CVE-2023-2977.patch \
+           file://0001-CVE-2023-40660.patch \
+           file://0002-CVE-2023-40660.patch \
+           file://0001-CVE-2023-4535.patch \
+           file://0002-CVE-2023-4535.patch \
+           file://0001-CVE-2023-40661.patch \
+           file://0002-CVE-2023-40661.patch \
+           file://0003-CVE-2023-40661.patch \
+           file://0004-CVE-2023-40661.patch \
+           file://0005-CVE-2023-40661.patch \
+           file://0006-CVE-2023-40661.patch \
+           file://0007-CVE-2023-40661.patch \
+           file://0008-CVE-2023-40661.patch \
+           file://0009-CVE-2023-40661.patch \
+           file://0010-CVE-2023-40661.patch \
+           file://0011-CVE-2023-40661.patch \
+           file://0012-CVE-2023-40661.patch \
+           file://0013-CVE-2023-40661.patch \
+           file://0014-CVE-2023-40661.patch \
+           file://0015-CVE-2023-40661.patch \
+           file://0016-CVE-2023-40661.patch \
+           file://0017-CVE-2023-40661.patch \
+           file://0018-CVE-2023-40661.patch \
+           file://0019-CVE-2023-40661.patch \
           "
 DEPENDS = "virtual/libiconv openssl"
 
