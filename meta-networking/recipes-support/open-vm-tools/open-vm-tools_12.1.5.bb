@@ -45,6 +45,7 @@ SRC_URI = "git://github.com/vmware/open-vm-tools.git;protocol=https;branch=stabl
            file://0001-timeSync-Portable-way-to-print-64bit-time_t.patch;patchdir=.. \
            file://CVE-2023-20867.patch;patchdir=.. \
            file://CVE-2023-34058.patch;patchdir=.. \
+           file://CVE-2023-34059.patch;patchdir=.. \
            "
 
 UPSTREAM_CHECK_GITTAGREGEX = "stable-(?P<pver>\d+(\.\d+)+)"
