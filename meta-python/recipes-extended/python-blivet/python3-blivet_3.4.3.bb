@@ -16,6 +16,7 @@ SRC_URI += "\
            file://0009-invoking-fsck-with-infinite-timeout.patch \
            file://0010-invoking-mkfs-with-infinite-timeout.patch \
            file://0011-invoking-dd-with-infinite-timeout.patch \
+           file://0012-tweak-x86-target-arch.patch \
 "
 SRC_URI[sha256sum] = "1b05b77f3ee35d82c7a577a168c9ba0204d3e9a87eb1975e5f9af47700eeff48"
 
