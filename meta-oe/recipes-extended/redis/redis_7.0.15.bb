@@ -17,7 +17,7 @@ SRC_URI = "http://download.redis.io/releases/${BP}.tar.gz \
            file://GNU_SOURCE-7.patch \
            file://0006-Define-correct-gregs-for-RISCV32.patch \
            "
-SRC_URI[sha256sum] = "7e1cdf347f4970ea39d5b7fdb19aedec4c21942e202de65bdeb782d38d2f299f"
+SRC_URI[sha256sum] = "98066f5363504b26c34dd20fbcc3c957990d764cdf42576c836fc021073f4341"
 
 inherit autotools-brokensep update-rc.d systemd useradd
 
