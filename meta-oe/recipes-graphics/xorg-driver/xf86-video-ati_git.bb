@@ -13,7 +13,7 @@ inherit features_check
 
 REQUIRED_DISTRO_FEATURES += "opengl"
 
-SRC_URI = "git://git@gitlab.freedesktop.org/xorg/driver/xf86-video-ati.git;branch=master"
+SRC_URI = "git://gitlab.freedesktop.org/xorg/driver/xf86-video-ati.git;protocol=https;branch=master"
 SRCREV = "7a6a34af026f0bef8080b91baf97a729380bca01"
 
 SRC_URI[sha256sum] = "659f5a1629eea5f5334d9b39b18e6807a63aa1efa33c1236d9cc53acbb223c49"
