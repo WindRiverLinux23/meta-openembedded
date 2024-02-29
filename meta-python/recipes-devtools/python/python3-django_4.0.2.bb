@@ -1,6 +1,9 @@
 require python-django.inc
 inherit setuptools3
 
+SRC_URI += "file://CVE-2024-24680.patch \
+           "
+
 SRC_URI[sha256sum] = "110fb58fb12eca59e072ad59fc42d771cd642dd7a2f2416582aa9da7a8ef954a"
 
 RDEPENDS:${PN} += "\
