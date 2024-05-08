@@ -20,6 +20,8 @@ SRC_URI = "http://php.net/distributions/php-${PV}.tar.bz2 \
            file://0009-php-don-t-use-broken-wrapper-for-mkdir.patch \
            file://0010-iconv-fix-detection.patch \
            file://0001-Change-whether-to-inline-XXH3_hashLong_withSecret-to.patch \
+           file://CVE-2024-3096.patch \
+           file://CVE-2024-2756.patch \
           "
 
 SRC_URI:append:class-target = " \
