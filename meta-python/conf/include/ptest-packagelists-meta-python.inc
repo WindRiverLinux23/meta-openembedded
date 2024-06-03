@@ -14,6 +14,7 @@ PTESTS_FAST_META_PYTHON = "\
     python3-cachetools \
     python3-cbor2 \
     python3-click \
+    python3-dasbus \
     python3-dominate \
     python3-execnet \
     python3-geojson \
