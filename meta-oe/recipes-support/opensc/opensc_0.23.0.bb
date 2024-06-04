@@ -40,6 +40,16 @@ SRC_URI = "git://github.com/OpenSC/OpenSC;branch=master;protocol=https \
            file://0017-CVE-2023-40661.patch \
            file://0018-CVE-2023-40661.patch \
            file://0019-CVE-2023-40661.patch \
+           file://0001-CVE-2023-5992.patch \
+           file://0002-CVE-2023-5992.patch \
+           file://0003-CVE-2023-5992.patch \
+           file://0004-CVE-2023-5992.patch \
+           file://0005-CVE-2023-5992.patch \
+           file://0006-CVE-2023-5992.patch \
+           file://0007-CVE-2023-5992.patch \
+           file://0008-CVE-2023-5992.patch \
+           file://0009-CVE-2023-5992.patch \
+           file://0010-CVE-2023-5992.patch \
           "
 DEPENDS = "virtual/libiconv openssl"
 
